@@ -6,17 +6,13 @@
 		<groupId>academy.devdojo.youtube</groupId>
 		<artifactId>devdojo-microservices</artifactId>
 		<version>1.0-SNAPSHOT</version>
-		<relativePath> ../ </relativePath> <!-- lookup parent from repository -->
+		<relativePath>../</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
 	<artifactId>course</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>course</name>
 	<description>Spring Boot Micros-services By DevDojo</description>
-
-	<!--<properties>
-		<java.version>11</java.version>
-	</properties>-->
 
 	<dependencies>
 		<dependency>
@@ -27,10 +23,14 @@
 	</dependencies>
 
 	<build>
+		<finalName>course</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<executable>true</executable>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
