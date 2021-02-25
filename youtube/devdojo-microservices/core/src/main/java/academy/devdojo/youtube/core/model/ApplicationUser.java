@@ -1,13 +1,17 @@
 package academy.devdojo.youtube.core.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ApplicationUser implements AbstractEntity{
 
@@ -18,10 +22,11 @@ public class ApplicationUser implements AbstractEntity{
 
     @NotNull
     @Column(nullable = false)
-    private String userName;
+    private String username;
 
     @NotNull
     @Column(nullable = false)
+    @ToString.Exclude
     private String password;
 
     @NotNull
@@ -30,7 +35,7 @@ public class ApplicationUser implements AbstractEntity{
 
     public ApplicationUser(@NotNull ApplicationUser applicationUser) {
         this.id = applicationUser.getId();
-        this.userName = applicationUser.getUserName();
+        this.username = applicationUser.getUsername();
         this.password = applicationUser.getPassword();
         this.role = applicationUser.getRole();
     }

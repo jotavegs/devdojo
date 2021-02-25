@@ -2,12 +2,10 @@ package academy.devdojo.youtube.auth.security.user;
 
 import academy.devdojo.youtube.core.model.ApplicationUser;
 import academy.devdojo.youtube.core.repository.ApplicationUserRepository;
-import com.netflix.discovery.shared.Application;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
-import java.util.Objects;
 
 import static org.springframework.security.core.authority.AuthorityUtils.commaSeparatedStringToAuthorityList;
 
@@ -29,10 +26,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
         log.info("Searching in the DB the user by username '{}'", username);
+
         ApplicationUser applicationUser = applicationUserRepository.findByUsername(username);
+
         log.info("ApplicationUser found '{}'", applicationUser);
 
-        if (Objects.isNull(applicationUser))
+        if (applicationUser == null)
             throw new UsernameNotFoundException(String.format("Application user '%s' not found", username));
 
         return new CustomUserDetails(applicationUser);
