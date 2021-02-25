@@ -1,6 +1,5 @@
 package academy.devdojo.youtube.core.property;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

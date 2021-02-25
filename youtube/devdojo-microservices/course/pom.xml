@@ -14,6 +14,10 @@
 	<name>course</name>
 	<description>Spring Boot Micros-services By DevDojo</description>
 
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>academy.devdojo.youtube</groupId>
