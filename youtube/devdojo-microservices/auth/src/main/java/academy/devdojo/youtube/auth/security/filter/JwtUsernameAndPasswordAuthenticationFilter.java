@@ -55,11 +55,11 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
         SignedJWT signedJWT = tokenCreator.createSignedJWT(auth);
 
-        String encryptedToken = tokenCreator.ecryptToken(signedJWT);
+        String encryptedToken = tokenCreator.encryptToken(signedJWT);
 
         log.info("Token generated successfully, addint it to the response header");
 
-        response.addHeader("Access-Control-Expose-Headers","XSRF-TOKEN, "+jwtConfiguration.getHeader().getName());
+        response.addHeader("Access-Control-Expose-Headers","XSRF-TOKEN, " + jwtConfiguration.getHeader().getName());
 
         response.addHeader(jwtConfiguration.getHeader().getName(), jwtConfiguration.getHeader().getPrefix() + encryptedToken);
     }

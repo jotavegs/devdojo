@@ -73,6 +73,7 @@ public class TokenCreator {
                         .stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
+                .claim("userId",applicationUser.getId())
                 .issuer("http://academy.devdojo")
                 .issueTime(new Date())
                 .expirationTime(new Date(System.currentTimeMillis() + (jwtConfiguration.getExpiration() * 1000)))
@@ -90,7 +91,7 @@ public class TokenCreator {
         return generator.genKeyPair();
     }
 
-    public String ecryptToken(SignedJWT signedJWT) throws JOSEException {
+    public String encryptToken(SignedJWT signedJWT) throws JOSEException {
         log.info("Starting the ecryptToken method");
 
         DirectEncrypter directEncrypter = new DirectEncrypter(jwtConfiguration.getPrivateKey().getBytes());

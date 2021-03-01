@@ -49,11 +49,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         @Override
-        public String getUsername() {
-            return null;
-        }
-
-        @Override
         public boolean isAccountNonExpired() {
             return true;
         }
