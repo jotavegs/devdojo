@@ -1,6 +1,8 @@
 package academy.devdojo.youtube.auth.endpoint.controller;
 
 import academy.devdojo.youtube.core.model.ApplicationUser;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +15,11 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("user")
+@Api(value = "Endpoints to manage user's information")
 public class UserInfoController {
 
     @GetMapping(path = "info", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "Retrieve the information from the user available in the token", response = ApplicationUser.class)
     public ResponseEntity<ApplicationUser> getUserInfo(Principal principal){
         ApplicationUser applicationUser = (ApplicationUser) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         return new ResponseEntity<>(applicationUser, HttpStatus.OK);
