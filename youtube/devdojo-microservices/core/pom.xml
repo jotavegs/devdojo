@@ -11,4 +11,8 @@
 
     <artifactId>core</artifactId>
 
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
 </project>
